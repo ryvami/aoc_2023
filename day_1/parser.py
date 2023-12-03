@@ -1,13 +1,5 @@
 import re
 
-if __name__ == '__main__':
-    sum_1 = 0
-    sum_2 = 0
-
-    with open('input.txt', 'r') as f:
-        for line in f:
-            sum_1 += part_1(line.strip()) 
-            sum_2 += part_2(line.strip())
 
 def part_1(str):
     # Get numbers from string
@@ -45,3 +37,13 @@ def part_2(str):
                     start = end
         end += 1
     return int(num_arr[0] + num_arr[len(num_arr) - 1])
+
+if __name__ == '__main__':
+    sum_1 = 0
+    sum_2 = 0
+
+    with open('input.txt', 'r') as f:
+        for line in f:
+            sum_1 += part_1(line.strip()) 
+            sum_2 += part_2(line.strip())
+
