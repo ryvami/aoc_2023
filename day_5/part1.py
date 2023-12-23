@@ -1,8 +1,7 @@
-# got stuck so had to look up answer...
-# Solution: https://github.com/hyper-neutrino/advent-of-code/blob/main/2023/day05p1.py
-seeds, *blocks = open("input.txt").read().split("\n\n")
+seeds, *blocks = open("example.txt").read().split("\n\n")
 
 seeds = list(map(int, seeds.split(":")[1].split()))
+
 for block in blocks:
     ranges = []
     for line in block.splitlines()[1:]:
@@ -10,14 +9,20 @@ for block in blocks:
     new = []
     for x in seeds:
         for a, b, c in ranges:
-            # if it is in one of the ranges given in the input
+            # check if there is a seed within one of the ranges
             if x in range(b, b + c):
-                # (x - b) the offset for the matching number
-                # (x - b) + a is the new destination
+                # x is within the range of b + c
+                # need to find the corresponding destination
+                # we do this by calculating the offset (x - b)
+                # add the offset to the start of the range for the destination
                 new.append(x - b + a)
+                # we found a seed within a range, so we can go to the next seeds
                 break
         else:
+            # if there is no seed within a range, the seed must not be in the defined ranges
+            # Therefore, the seed will just be mapped to the same value
             new.append(x)
     seeds = new
-print(min(seeds))
 
+        
+        
